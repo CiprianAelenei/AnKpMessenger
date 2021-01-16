@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">AnKp Messenger</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ciprian_aelenei_ana_maria_diaconescu">Ciprian Aelenei + Ana-Maria Diaconescu</string>
+    <string name="_2021">2021</string>
+    <string name="v_1_0_7_6">v 1.0.7.6</string>
+    <string name="ankp_messenger">AnKp Messenger</string>
+    <string name="setari">Setari</string>
+    <string name="deconecteaza_te">Deconecteaza-te</string>
+    <string name="despre">Despre</string>
+    <string name="intra_in_cont">Intra in cont</string>
+    <string name="introduceti_aderesa_de_e_mail">Introduceti aderesa de e-mail</string>
+    <string name="introduceti_parola">Introduceti parola</string>
+    <string name="conecteaza_te">Conecteaza-te</string>
+    <string name="nu_esti_membru_inregistreaza_te">Nu esti membru? Inregistreaza-te!</string>
+    <string name="scrie_mesajul_tau">Scrie mesajul tau...</string>
+    <string name="textview">TextView</string>
+    <string name="bine_ai_venit">Bine ai venit!</string>
+    <string name="nume_utilizator">Nume Utilizator</string>
+    <string name="profile">Profilul tau de AnKp Messenger  </string>
+</resources>

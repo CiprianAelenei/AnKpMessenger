@@ -1,0 +1,128 @@
+package com.example.ankpmessenger;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.sql.DatabaseMetaData;
+import java.util.HashMap;
+
+public class RegisterActivity extends AppCompatActivity {
+
+    //Widgets
+    EditText userET, passET, emailET;
+    Button registerBtn;
+
+    //Firebase:
+    FirebaseAuth auth;
+    DatabaseReference myRef;
+
+    public void run(){
+
+    }
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_register);
+
+        //Intializare Widgets
+        userET= findViewById((R.id.userEditText));
+        passET = findViewById(R.id.passEditText);
+        emailET = findViewById(R.id.emailEditText);
+        registerBtn = findViewById(R.id.buttonRegister);
+
+        //Firebase Auth:
+        //auth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
+
+        //Adaugare Event Listener pe butonul inregistrare
+        registerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String username_text = userET.getText().toString();
+                String email_text = emailET.getText().toString();
+                String pass_text = passET.getText().toString();
+
+                if(TextUtils.isEmpty(username_text) || TextUtils.isEmpty(email_text) || TextUtils.isEmpty(pass_text)){
+                    Toast.makeText(RegisterActivity.this, "Completeaza campurile goale", Toast.LENGTH_SHORT).show();
+                }else{
+                    RegisterNow(username_text, email_text, pass_text);
+                }
+
+            }
+        });
+
+
+
+
+    }
+
+    private void RegisterNow(final String username, String email, String password){
+        auth.createUserWithEmailAndPassword(email,password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            FirebaseUser firebaseUser = auth.getCurrentUser();
+                            String userid = firebaseUser.getUid();
+
+                            myRef = FirebaseDatabase.getInstance()
+                                    .getReference("MyUsers").child(userid);
+
+                            //HashMaps
+                            HashMap<String, String> hashMap = new HashMap<>();
+                            hashMap.put("id", userid);
+                            hashMap.put("username", username);
+                            hashMap.put("imageURL", "default");
+                            hashMap.put("status", "Offline");
+
+                            // Deschidere MainActivity dupa Inregistrarea cu succes
+                            myRef.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+
+                                    if(task.isSuccessful()){
+                                        Intent i = new Intent(RegisterActivity.this, MainActivity.class);
+                                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(i);
+                                        finish();
+                                    }
+                                }
+                            });
+
+
+                        }else{
+                            Toast.makeText(RegisterActivity.this, "Inregistrarea contului a fost realizata!", Toast.LENGTH_SHORT).show();
+
+
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                                }
+                            }, 3000);
+                        }
+                    }
+                });
+    }
+}

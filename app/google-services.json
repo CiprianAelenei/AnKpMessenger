@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1032260884297",
+    "project_id": "ankp-messenger",
+    "storage_bucket": "ankp-messenger.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1032260884297:android:9a9681fa089cfd423b6c98",
+        "android_client_info": {
+          "package_name": "com.example.ankpmessenger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1032260884297-v2kfeg5b8g059ee6kmi125oobpvpr5lv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYQXDbtS4lk6EReKnINDHxYd__pHwTdX8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1032260884297-v2kfeg5b8g059ee6kmi125oobpvpr5lv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

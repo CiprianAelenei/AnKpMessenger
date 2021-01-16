@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/logout"
+        android:title="@string/deconecteaza_te"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/settings"
+        android:title="@string/setari"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/about"
+        android:title="@string/despre"
+        app:showAsAction="never" />
+
+</menu>
